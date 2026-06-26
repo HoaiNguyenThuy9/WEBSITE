@@ -64,7 +64,7 @@ st.sidebar.caption("© 2026 NORTHFRAME Studio. All rights reserved.")
 # 1. TRANG CHỦ
 if page == "Trang Chủ":
     st.markdown('<p class="studio-title">NORTHFRAME STUDIO</p>', unsafe_allow_html=True)
-    st.markdown('<p class="studio-subtitle">Architecture & Interior Design</p>', unsafe_allow_html=True)
+    st.markdown('<p class="studio-subtitle">Furniture Photograph & AI Visualition </p>', unsafe_allow_html=True)
     
     # Banner chính
     st.image("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200", 
