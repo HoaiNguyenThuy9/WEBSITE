@@ -299,16 +299,6 @@ if page in ["Tổng Quan (Trang Chủ)", "Câu Hỏi Thường Gặp (FAQs)"]:
 # PHẦN 6: ĐỐI TÁC VÀ FORM ĐĂNG KÝ NHẬN TƯ VẤN TRỰC TIẾP
 # ====================================================================================================
 if page == "Tổng Quan (Trang Chủ)":
-    st.write("##")
-    st.markdown('<p class="section-title" style="font-size:1.5rem;">ĐỐI TÁC CHIẾN LƯỢC</p>', unsafe_allow_html=True)
-    
-    # Hiển thị text/logo đơn giản, tinh tế như dòng đối tác cuối trang NADA
-    brand_col1, brand_col2, brand_col3, brand_col4 = st.columns(4)
-    with brand_col1: st.markdown("<p style='text-align:center; color:#999; font-weight:500;'>GỖ AN CƯỜNG</p>", unsafe_allow_html=True)
-    with brand_col2: st.markdown("<p style='text-align:center; color:#999; font-weight:500;'>SƠN DULUX</p>", unsafe_allow_html=True)
-    with brand_col3: st.markdown("<p style='text-align:center; color:#999; font-weight:500;'>PHỤ KIỆN HAFELE</p>", unsafe_allow_html=True)
-    with brand_col4: st.markdown("<p style='text-align:center; color:#999; font-weight:500;'>SƠN NIPPON</p>", unsafe_allow_html=True)
-
     st.write("---")
     
     # Khu vực Form Đăng Ký
