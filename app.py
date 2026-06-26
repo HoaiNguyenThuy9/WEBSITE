@@ -2,7 +2,7 @@ import streamlit as st
 
 # --- CẤU HÌNH TRANG ---
 st.set_page_config(
-    page_title="LUMEN Studio | Thiết Kế Nội Thất",
+    page_title="NORTHFRAME Studio | Thiết Kế Nội Thất",
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded"
