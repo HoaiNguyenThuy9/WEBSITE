@@ -2,204 +2,209 @@ import streamlit as st
 
 # --- CẤU HÌNH TRANG ---
 st.set_page_config(
-    page_title="NORTHFRAME Studio | Thiết Kế Nội Thất",
-    page_icon="🏠",
+    page_title="NORTHFRAME | Premium Visualization",
+    page_icon="✨",
     layout="wide",
-    initial_sidebar_state="expanded"
 )
 
-# --- SỬ DỤNG CSS ĐỂ CUSTOM GIAO DIỆN (Tối giản & Sang trọng) ---
+# --- GOOGLE FONTS & CUSTOM CSS ---
 st.markdown("""
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-    /* Chỉnh font và màu sắc chủ đạo */
-    .main .block-container {
-        padding-top: 2rem;
+    /* Tổng thể */
+    .main {
+        background-color: #FDFDFD;
     }
+    
+    /* Typography */
+    html, body, [class*="css"] {
+        font-family: 'Montserrat', sans-serif;
+        color: #1A1A1A;
+    }
+    
     h1, h2, h3 {
-        font-family: 'Playfair Display', serif;
-        color: #2C3E50;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 700 !important;
+        letter-spacing: 1px;
     }
-    .studio-title {
-        font-size: 3rem;
+
+    /* Tiêu đề Studio lớn ở trang chủ */
+    .hero-title {
+        font-size: 4.5rem;
         font-weight: 700;
-        letter-spacing: 2px;
+        text-align: center;
+        margin-top: 2rem;
         margin-bottom: 0px;
-        text-align: center;
+        color: #0F172A;
     }
-    .studio-subtitle {
-        font-size: 1.2rem;
-        font-style: italic;
-        color: #7F8C8D;
+    
+    .hero-subtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 5px;
         text-align: center;
-        margin-bottom: 2rem;
+        color: #94A3B8;
+        margin-bottom: 3rem;
     }
-    .project-card {
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        padding: 15px;
-        background-color: #ffffff;
-        margin-bottom: 20px;
+
+    /* Hiệu ứng Glassmorphism cho Card */
+    .luxury-card {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(200, 200, 200, 0.3);
+        padding: 2rem;
+        border-radius: 0px; /* Vuông vức thường sang trọng hơn */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+    }
+    
+    .luxury-card:hover {
+        transform: translateY(-5px);
+        border-color: #C5A059; /* Màu Gold accent */
+    }
+
+    /* Button sang trọng */
+    .stButton>button {
+        background-color: #0F172A;
+        color: white;
+        border-radius: 0px;
+        padding: 0.75rem 2.5rem;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s;
+    }
+    
+    .stButton>button:hover {
+        background-color: #C5A059;
+        color: white;
+    }
+
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: #0F172A;
+    }
+    [data-testid="stSidebar"] * {
+        color: white !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# --- THANH ĐIỀU HƯỚNG (SIDEBAR) ---
-st.sidebar.image("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500", use_container_width=True)
-st.sidebar.title("NORTHFRAME STUDIO")
-st.sidebar.write("Khơi nguồn không gian sống đương đại.")
-st.sidebar.markdown("---")
+# --- SIDEBAR NAVIGATION ---
+with st.sidebar:
+    st.image("https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?w=500", use_container_width=True)
+    st.markdown("<h2 style='text-align: center;'>NORTHFRAME</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; font-size: 0.8rem; opacity: 0.7;'>ARCHITECTURAL VISUALIZATION</p>", unsafe_allow_html=True)
+    st.write("---")
+    page = st.radio("CHỌN TRANG", ["TRANG CHỦ", "PORTFOLIO", "DỊCH VỤ", "LIÊN HỆ"])
+    st.write("---")
+    st.caption("© 2026 NORTHFRAME STUDIO")
 
-# Chọn trang
-page = st.sidebar.radio(
-    "DANH MỤC",
-    ["Trang Chủ", "Bộ Sưu Tập (Portfolio)", "Dịch Vụ & Báo Giá", "Liên Hệ"]
-)
-
-# Thêm thông tin chân trang ở Sidebar
-st.sidebar.markdown("---")
-st.sidebar.caption("© 2026 NORTHFRAME Studio. All rights reserved.")
-
-# --- NỘI DUNG TỪNG TRANG ---
-
-# 1. TRANG CHỦ
-if page == "Trang Chủ":
-    st.markdown('<p class="studio-title">NORTHFRAME STUDIO</p>', unsafe_allow_html=True)
-    st.markdown('<p class="studio-subtitle">Furniture Photograph & AI Visualition </p>', unsafe_allow_html=True)
+# --- TRANG CHỦ ---
+if page == "TRANG CHỦ":
+    st.markdown('<p class="hero-title">NORTHFRAME</p>', unsafe_allow_html=True)
+    st.markdown('<p class="hero-subtitle">Furniture Photography & AI Visualization</p>', unsafe_allow_html=True)
     
-    # Banner chính
-    st.image("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200", 
-             caption="Không gian tối giản, nâng tầm trải nghiệm sống.", use_container_width=True)
+    # Hero Image - Sử dụng ảnh có chiều sâu
+    st.image("https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80", use_container_width=True)
     
-    st.markdown("---")
+    st.write("##")
     
-    # Giới thiệu ngắn
-    col1, col2 = st.columns([1, 1])
+    col1, col2 = st.columns([1, 1], gap="large")
     with col1:
-        st.subheader("Về Chúng Tôi")
+        st.markdown("### Sự Giao Thoa Giữa Nghệ Thuật & Công Nghệ")
         st.write("""
-        Tại **NORTHFRAME Studio**, chúng tôi tin rằng mỗi ngôi nhà là một câu chuyện độc bản của gia chủ. 
-        Không chỉ dừng lại ở việc sắp xếp nội thất, chúng tôi kiến tạo những không gian sống cân bằng 
-        giữa **công năng tối ưu** và **thẩm mĩ tinh tế**. 
+        Tại **NORTHFRAME**, chúng tôi không chỉ chụp ảnh hay vẽ 3D. Chúng tôi kiến tạo những trải nghiệm thị giác đỉnh cao 
+        bằng cách kết hợp kỹ thuật nhiếp ảnh truyền thống với sức mạnh đột phá của trí tuệ nhân tạo (AI).
         
-        Với phong cách chủ đạo là Hiện đại (Modern), Tối giản (Minimalism) và Đông Dương (Indochine), 
-        NORTHFRAME cam kết mang lại sự hài lòng tuyệt đối trong từng đường nét chi tiết.
+        Sứ mệnh của chúng tôi là biến những bản thiết kế nội thất thô cứng thành những tác phẩm nghệ thuật có hồn, 
+        giúp khách hàng của bạn 'cảm' được không gian ngay từ cái nhìn đầu tiên.
         """)
-    with col2:
-        st.subheader("Triết Lý Thiết Kế")
-        st.info("“Chi tiết làm nên sự hoàn hảo, nhưng sự hoàn hảo không phải là chi tiết.” – Leonardo da Vinci")
-        st.write("Chúng tôi chú trọng vào vật liệu tự nhiên, ánh sáng tự nhiên và luồng giao thông thông thoáng để tạo ra cảm giác bình yên nhất khi bạn trở về nhà.")
-
-# 2. BỘ SƯU TẬP (PORTFOLIO)
-elif page == "Bộ Sưu Tập (Portfolio)":
-    st.title("Dự Án Nổi Bật")
-    st.write("Khám phá các công trình thiết kế và thi công trọn gói bởi NORTHFRAME.")
-    
-    tab1, tab2, tab3 = st.tabs(["Phòng Khách", "Phòng Ngủ", "Nhà Bếp & Phòng Ăn"])
-    
-    with tab1:
-        st.subheader("Phong cách Eco-Minimalism")
-        col_a, col_b = st.columns(2)
-        with col_a:
-            st.image("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600")
-        with col_b:
-            st.image("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600")
-        st.caption("Dự án sử dụng tông màu trung tính, gỗ sồi tự nhiên và hệ kính lớn đón sáng.")
-
-    with tab2:
-        st.subheader("Căn hộ Penthouse Landmark 81 - Luxury Modern")
-        col_a, col_b = st.columns(2)
-        with col_a:
-            st.image("https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600")
-        with col_b:
-            st.image("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600")
-        st.caption("Không gian phòng ngủ ấm cúng, sang trọng với chất liệu da và nỉ cao cấp.")
-
-    with tab3:
-        st.subheader("Nhà phố Bình Dương - Japandi Style")
-        col_a, col_b = st.columns(2)
-        with col_a:
-            st.image("https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=600")
-        with col_b:
-            st.image("https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=600")
-        st.caption("Sự kết hợp hoàn hảo giữa nét tinh tế Nhật Bản và sự tiện nghi Bắc Âu cho căn bếp.")
-
-# 3. DỊCH VỤ & BÁO GIÁ
-elif page == "Dịch Vụ & Báo Giá":
-    st.title("Dịch Vụ Của Chúng Tôi")
-    st.write("Chúng tôi cung cấp giải pháp toàn diện từ ý tưởng đến thực tế.")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.markdown("""
-        <div class="project-card">
-            <h3>1. Thiết Kế 3D</h3>
-            <p>Khảo sát hiện trạng, lên mặt bằng công năng và phối cảnh 3D trực quan, chi tiết vật liệu.</p>
-            <p><b>Chi phí:</b> từ 180.000 VNĐ / m²</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.button("Khám phá dự án")
         
     with col2:
-        st.markdown("""
-        <div class="project-card">
-            <h3>2. Thi Công Trọn Gói</h3>
-            <p>Sản xuất đồ gỗ tại xưởng riêng, quản lý và giám sát thi công hoàn thiện chìa khóa trao tay.</p>
-            <p><b>Chi phí:</b> Theo dự toán chi tiết</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    with col3:
-        st.markdown("""
-        <div class="project-card">
-            <h3>3. Cải Tạo Nội Thất</h3>
-            <p>Làm mới không gian cũ, tối ưu hóa công năng mà không ảnh hưởng đến kết cấu cốt lõi.</p>
-            <p><b>Chi phí:</b> Khảo sát và báo giá riêng</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.image("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800", use_container_width=True)
 
-    # Dự toán nhanh cho khách hàng
-    st.markdown("---")
-    st.subheader("🧮 Dự Toán Chi Phí Thiết Kế Nhanh")
+# --- PORTFOLIO ---
+elif page == "PORTFOLIO":
+    st.markdown("<h1 style='text-align: center;'>Featured Projects</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #666;'>Tuyển tập những dự án tiêu biểu mang dấu ấn nghệ thuật.</p>", unsafe_allow_html=True)
+    st.write("---")
     
-    area = st.number_input("Nhập diện tích căn hộ của bạn (m²):", min_value=10, max_value=500, value=70, step=5)
-    style = st.selectbox("Chọn phong cách thiết kế:", ["Hiện Đại (Modern)", "Tối Giản (Minimalism)", "Tân Cổ Điển (Classic Luxury)"])
+    # Grid Portfolio kiểu tạp chí kiến trúc
+    cols = st.columns(2)
+    projects = [
+        {"title": "The Penthouse AI", "type": "AI Visualization", "img": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800"},
+        {"title": "Organic Living", "type": "Photography", "img": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"},
+        {"title": "Minimalist Loft", "type": "CGI & AI", "img": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800"},
+        {"title": "The Classic Edit", "type": "Photography", "img": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800"}
+    ]
     
-    # Định giá theo phong cách
-    price_per_m2 = 180000 if style != "Tân Cổ Điển (Classic Luxury)" else 250000
-    total_cost = area * price_per_m2
-    
-    st.metric(label=f"Chi phí thiết kế tạm tính ({style})", value=f"{total_cost:,.0f} VNĐ")
-    st.caption("*Lưu ý: Báo giá mang tính chất tham khảo sơ bộ, chi phí thực tế phụ thuộc vào yêu cầu chi tiết.")
+    for i, p in enumerate(projects):
+        with cols[i % 2]:
+            st.image(p['img'], use_container_width=True)
+            st.markdown(f"<h4 style='margin-bottom:0;'>{p['title']}</h4>", unsafe_allow_html=True)
+            st.markdown(f"<p style='color: #C5A059; font-size: 0.9rem; text-transform: uppercase;'>{p['type']}</p>", unsafe_allow_html=True)
+            st.write("##")
 
-# 4. LIÊN HỆ
-elif page == "Liên Hệ":
-    st.title("Kết Nối Với NORTHFRAME")
-    st.write("Hãy để lại thông tin, kiến trúc sư của chúng tôi sẽ liên hệ tư vấn miễn phí trong vòng 24h.")
+# --- DỊCH VỤ ---
+elif page == "DỊCH VỤ":
+    st.markdown("<h1 style='text-align: center;'>Our Expertise</h1>", unsafe_allow_html=True)
+    st.write("##")
     
-    left_col, right_col = st.columns(2)
+    c1, c2, c3 = st.columns(3)
     
-    with left_col:
-        with st.form("contact_form", clear_on_submit=True):
-            name = st.text_input("Họ và tên *")
-            phone = st.text_input("Số điện thoại *")
-            email = st.text_input("Email")
-            note = st.text_area("Yêu cầu tư vấn (Ví dụ: Thiết kế căn hộ 2 PN, thi công nhà phố...)")
+    services = [
+        {"icon": "📸", "name": "Furniture Photography", "desc": "Chụp ảnh sản phẩm nội thất chuyên nghiệp cho Catalog và Website."},
+        {"icon": "🤖", "name": "AI Interior Visualization", "desc": "Sử dụng AI để dựng phối cảnh không gian từ bản vẽ tay hoặc mặt bằng thô."},
+        {"icon": "🏠", "name": "3D Architectural Render", "desc": "Diễn họa kiến trúc 3D với độ chi tiết và vật liệu chân thực 100%."}
+    ]
+    
+    for i, s in enumerate([c1, c2, c3]):
+        with s:
+            st.markdown(f"""
+            <div class="luxury-card">
+                <h2 style='font-size: 3rem;'>{services[i]['icon']}</h2>
+                <h3>{services[i]['name']}</h3>
+                <p style='font-size: 0.9rem; color: #555;'>{services[i]['desc']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.write("---")
+    st.markdown("<h3 style='text-align: center;'>Ước tính ngân sách dự án</h3>", unsafe_allow_html=True)
+    
+    col_calc1, col_calc2 = st.columns([2, 1])
+    with col_calc1:
+        m2 = st.slider("Diện tích mặt bằng (m2)", 20, 1000, 100)
+    with col_calc2:
+        package = st.selectbox("Gói dịch vụ", ["Standard (AI)", "Premium (Photo + AI)", "Luxury (CGI + AI)"])
+    
+    price_map = {"Standard (AI)": 50000, "Premium (Photo + AI)": 150000, "Luxury (CGI + AI)": 300000}
+    total = m2 * price_map[package]
+    
+    st.markdown(f"<h2 style='text-align: center; color: #C5A059;'>Tạm tính: {total:,.0f} VNĐ</h2>", unsafe_allow_html=True)
+
+# --- LIÊN HỆ ---
+elif page == "LIÊN HỆ":
+    st.markdown("<h1 style='text-align: center;'>Let's Create Together</h1>", unsafe_allow_html=True)
+    
+    col_f1, col_f2 = st.columns([1, 1], gap="large")
+    
+    with col_f1:
+        st.markdown("### Gửi lời nhắn")
+        with st.form("luxury_form"):
+            st.text_input("Tên của bạn")
+            st.text_input("Số điện thoại / Zalo")
+            st.selectbox("Dịch vụ quan tâm", ["Nhiếp ảnh nội thất", "AI Visualization", "Tư vấn tổng thể"])
+            st.text_area("Mô tả sơ lược về dự án")
+            st.form_submit_button("GỬI YÊU CẦU")
             
-            submitted = st.form_submit_submit_button("Gửi Yêu Cầu")
-            if submitted:
-                if name and phone:
-                    st.success(f"Cảm ơn {name}! NORTHFRAME đã tiếp nhận thông tin và sẽ gọi cho bạn sớm nhất.")
-                else:
-                    st.error("Vui lòng điền đầy đủ Họ tên và Số điện thoại.")
-                    
-    with right_col:
-        st.subheader("Thông Tin Văn Phòng")
-        st.markdown("""
-        * 📍 **Văn phòng chính:** Đường Đại Lộ Bình Dương, Thủ Dầu Một, Bình Dương
-        * 🏢 **Chi nhánh:** Quận 2, TP. Hồ Chí Minh
-        * 📞 **Hotline:** 090X.XXX.XXX
-        * ✉️ **Email:** contact@lumenstudio.vn
-        * ⏰ **Giờ làm việc:** Thứ 2 - Thứ 7 (8:00 - 18:00)
-        """)
-        # Bản đồ minh họa (Tọa độ giả định khu vực trung tâm)
-        st.map(data=[{"lat": 10.9805, "lon": 106.6642}])
+    with col_f2:
+        st.markdown("### Thông tin liên hệ")
+        st.write("📍 **Studio:** 123 Luxury Road, District 2, HCMC")
+        st.write("📧 **Email:** studio@northframe.vn")
+        st.write("📞 **Hotline:** 0901.234.567")
+        st.write("---")
+        # Bản đồ tối giản đen trắng
+        st.map(data=[{"lat": 10.7876, "lon": 106.7048}])
