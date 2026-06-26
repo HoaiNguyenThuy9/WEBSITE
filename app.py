@@ -45,7 +45,7 @@ st.markdown("""
 
 # --- THANH ĐIỀU HƯỚNG (SIDEBAR) ---
 st.sidebar.image("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500", use_container_width=True)
-st.sidebar.title("LUMEN STUDIO")
+st.sidebar.title("NORTHFRAME STUDIO")
 st.sidebar.write("Khơi nguồn không gian sống đương đại.")
 st.sidebar.markdown("---")
 
@@ -57,13 +57,13 @@ page = st.sidebar.radio(
 
 # Thêm thông tin chân trang ở Sidebar
 st.sidebar.markdown("---")
-st.sidebar.caption("© 2026 LUMEN Studio. All rights reserved.")
+st.sidebar.caption("© 2026 NORTHFRAME Studio. All rights reserved.")
 
 # --- NỘI DUNG TỪNG TRANG ---
 
 # 1. TRANG CHỦ
 if page == "Trang Chủ":
-    st.markdown('<p class="studio-title">LUMEN STUDIO</p>', unsafe_allow_html=True)
+    st.markdown('<p class="studio-title">NORTHFRAME STUDIO</p>', unsafe_allow_html=True)
     st.markdown('<p class="studio-subtitle">Architecture & Interior Design</p>', unsafe_allow_html=True)
     
     # Banner chính
@@ -77,12 +77,12 @@ if page == "Trang Chủ":
     with col1:
         st.subheader("Về Chúng Tôi")
         st.write("""
-        Tại **LUMEN Studio**, chúng tôi tin rằng mỗi ngôi nhà là một câu chuyện độc bản của gia chủ. 
+        Tại **NORTHFRAME Studio**, chúng tôi tin rằng mỗi ngôi nhà là một câu chuyện độc bản của gia chủ. 
         Không chỉ dừng lại ở việc sắp xếp nội thất, chúng tôi kiến tạo những không gian sống cân bằng 
         giữa **công năng tối ưu** và **thẩm mĩ tinh tế**. 
         
         Với phong cách chủ đạo là Hiện đại (Modern), Tối giản (Minimalism) và Đông Dương (Indochine), 
-        LUMEN cam kết mang lại sự hài lòng tuyệt đối trong từng đường nét chi tiết.
+        NORTHFRAME cam kết mang lại sự hài lòng tuyệt đối trong từng đường nét chi tiết.
         """)
     with col2:
         st.subheader("Triết Lý Thiết Kế")
@@ -92,12 +92,12 @@ if page == "Trang Chủ":
 # 2. BỘ SƯU TẬP (PORTFOLIO)
 elif page == "Bộ Sưu Tập (Portfolio)":
     st.title("Dự Án Nổi Bật")
-    st.write("Khám phá các công trình thiết kế và thi công trọn gói bởi LUMEN.")
+    st.write("Khám phá các công trình thiết kế và thi công trọn gói bởi NORTHFRAME.")
     
     tab1, tab2, tab3 = st.tabs(["Phòng Khách", "Phòng Ngủ", "Nhà Bếp & Phòng Ăn"])
     
     with tab1:
-        st.subheader("Biệt thự Thảo Điền - Phong cách Eco-Minimalism")
+        st.subheader("Phong cách Eco-Minimalism")
         col_a, col_b = st.columns(2)
         with col_a:
             st.image("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600")
@@ -173,7 +173,7 @@ elif page == "Dịch Vụ & Báo Giá":
 
 # 4. LIÊN HỆ
 elif page == "Liên Hệ":
-    st.title("Kết Nối Với LUMEN")
+    st.title("Kết Nối Với NORTHFRAME")
     st.write("Hãy để lại thông tin, kiến trúc sư của chúng tôi sẽ liên hệ tư vấn miễn phí trong vòng 24h.")
     
     left_col, right_col = st.columns(2)
@@ -188,7 +188,7 @@ elif page == "Liên Hệ":
             submitted = st.form_submit_submit_button("Gửi Yêu Cầu")
             if submitted:
                 if name and phone:
-                    st.success(f"Cảm ơn {name}! LUMEN đã tiếp nhận thông tin và sẽ gọi cho bạn sớm nhất.")
+                    st.success(f"Cảm ơn {name}! NORTHFRAME đã tiếp nhận thông tin và sẽ gọi cho bạn sớm nhất.")
                 else:
                     st.error("Vui lòng điền đầy đủ Họ tên và Số điện thoại.")
                     
